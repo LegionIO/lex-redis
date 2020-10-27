@@ -18,4 +18,6 @@ Gem::Specification.new do |spec|
   spec.metadata['changelog_uri'] = 'https://legionio.atlassian.net/wiki/spaces/LEX/pages/612270191'
   spec.metadata['bug_tracker_uri'] = 'https://bitbucket.org/legion-io/lex-redis/issues'
   spec.require_paths = ['lib']
+
+  spec.add_dependency 'redis'
 end
