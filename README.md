@@ -1,3 +1,3 @@
 # Legion::Extensions::Redis
 
-Connections Legion to Redis
+Connects LegionIO to Redis
