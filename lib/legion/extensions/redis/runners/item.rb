@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'legion/extensions/redis/helpers/client'
 
 module Legion
@@ -5,36 +7,36 @@ module Legion
     module Redis
       module Runners
         module Item
-          def get(key:, **opts)
-            { result: client(**opts).get(key) }
+          def get(key:, **)
+            { result: client(**).get(key) }
           end
 
-          def decrement(key:, number: 1, **opts)
-            { result: client(**opts).decrby(key, number) }
+          def decrement(key:, number: 1, **)
+            { result: client(**).decrby(key, number) }
           end
 
-          def delete(key:, **opts)
-            { result: client(**opts).del(key) }
+          def delete(key:, **)
+            { result: client(**).del(key) }
           end
 
-          def exists(key:, **opts)
-            { result: client(**opts).exists?(key) }
+          def exists(key:, **)
+            { result: client(**).exists?(key) }
           end
 
-          def increment(key:, number: 1, **opts)
-            { result: client(**opts).incrby(key, number) }
+          def increment(key:, number: 1, **)
+            { result: client(**).incrby(key, number) }
           end
 
-          def keys(glob: '*', **opts)
-            { result: client(**opts).keys(glob) }
+          def keys(glob: '*', **)
+            { result: client(**).keys(glob) }
           end
 
-          def rename(old_key, key:, **opts)
-            { result: client(**opts).rename(old_key, key) }
+          def rename(old_key, key:, **)
+            { result: client(**).rename(old_key, key) }
           end
 
-          def set(key:, value:, ttl: nil, **opts)
-            { result: client(**opts).set(key, value, ex: ttl) }
+          def set(key:, value:, ttl: nil, **)
+            { result: client(**).set(key, value, ex: ttl) }
           end
 
           extend Legion::Extensions::Redis::Helpers::Client

@@ -1,4 +1,5 @@
 #!/usr/bin/env ruby
+# frozen_string_literal: true
 
 long_name = 'lex-redis'
 name = 'redis'

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'legion/extensions/redis/helpers/client'
 
 module Legion
@@ -5,28 +7,28 @@ module Legion
     module Redis
       module Runners
         module Server
-          def keys(glob: '*', **opts)
-            { result: client(**opts).keys(glob) }
+          def keys(glob: '*', **)
+            { result: client(**).keys(glob) }
           end
 
-          def ping(message: nil, **opts)
-            { result: client(**opts).ping(message) }
+          def ping(message: nil, **)
+            { result: client(**).ping(message) }
           end
 
-          def save(**opts)
-            { result: client(**opts).save }
+          def save(**)
+            { result: client(**).save }
           end
 
-          def time(**opts)
-            { result: client(**opts).time }
+          def time(**)
+            { result: client(**).time }
           end
 
-          def flushall(**opts)
-            { result: client(**opts).flushall }
+          def flushall(**)
+            { result: client(**).flushall }
           end
 
-          def flush_db(db: 0, **opts)
-            { results: client(db: db, **opts).flushdb(db) }
+          def flush_db(db: 0, **)
+            { results: client(db: db, **).flushdb(db) }
           end
 
           extend Legion::Extensions::Redis::Helpers::Client
