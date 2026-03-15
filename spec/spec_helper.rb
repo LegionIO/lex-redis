@@ -1,16 +1,26 @@
 # frozen_string_literal: true
 
 require 'bundler/setup'
+
+# Stub Legion::Extensions::Helpers::Lex before loading any runners.
+# In production the full LegionIO framework provides this; in specs we
+# replicate only the behaviour the runner files actually rely on.
+module Legion
+  module Extensions
+    module Helpers
+      module Lex
+        def self.included(base)
+          base.extend base if base.instance_of?(Module)
+        end
+      end
+    end
+  end
+end
+
 require 'legion/extensions/redis'
 
 RSpec.configure do |config|
-  # Enable flags like --only-failures and --next-failure
   config.example_status_persistence_file_path = '.rspec_status'
-
-  # Disable RSpec exposing methods globally on `Module` and `main`
   config.disable_monkey_patching!
-
-  config.expect_with :rspec do |c|
-    c.syntax = :expect
-  end
+  config.expect_with(:rspec) { |c| c.syntax = :expect }
 end
