@@ -47,6 +47,17 @@ All runners accept connection kwargs forwarded to `Helpers::Client`:
 
 Note: the default port is `6380`, not the standard Redis default of `6379`.
 
+## Standalone Client
+
+Use `Legion::Extensions::Redis::Client` outside the full LegionIO framework.
+
+```ruby
+require 'legion/extensions/redis'
+client = Legion::Extensions::Redis::Client.new(host: '127.0.0.1', port: 6379)
+client.set(key: 'foo', value: 'bar', ttl: 300)
+client.get(key: 'foo')
+```
+
 ## Requirements
 
 - Ruby >= 3.4
