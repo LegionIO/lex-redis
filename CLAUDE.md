@@ -8,6 +8,7 @@
 
 Legion Extension that connects LegionIO to Redis servers. Provides runners for item-level key/value operations and server management.
 
+**Version**: 0.2.0
 **GitHub**: https://github.com/LegionIO/lex-redis
 **License**: MIT
 
@@ -18,9 +19,20 @@ Legion::Extensions::Redis
 ├── Runners/
 │   ├── Item               # Key/value operations (get, set, delete, etc.)
 │   └── Server             # Server management and info
-└── Helpers/
-    └── Client             # Redis client connection helper (module method: .client)
+├── Helpers/
+│   └── Client             # Redis client connection helper (module method: .client)
+└── Client                 # Standalone client class wrapping Helpers::Client + all runners
 ```
+
+## Key Files
+
+| Path | Purpose |
+|------|---------|
+| `lib/legion/extensions/redis.rb` | Entry point, extension registration |
+| `lib/legion/extensions/redis/runners/item.rb` | Key/value runner |
+| `lib/legion/extensions/redis/runners/server.rb` | Server management runner |
+| `lib/legion/extensions/redis/helpers/client.rb` | Redis connection builder |
+| `lib/legion/extensions/redis/client.rb` | Standalone `Client` class for use outside Legion framework |
 
 ## Runner Methods
 
@@ -34,6 +46,10 @@ Both runners use `extend Legion::Extensions::Redis::Helpers::Client` so `client(
 
 `Helpers::Client.client` defaults: `host: '127.0.0.1'`, `port: 6380`. Note the non-standard default port of 6380 (not the Redis default 6379). Pass `host:`, `port:`, `db:`, and `password:` in task payloads to override.
 
+## Standalone Client
+
+`Client` wraps `Helpers::Client` and includes all runners (`Item`, `Server`), enabling use as a standalone Redis client outside the full LegionIO framework.
+
 ## Dependencies
 
 | Gem | Purpose |
@@ -41,6 +57,8 @@ Both runners use `extend Legion::Extensions::Redis::Helpers::Client` so `client(
 | `redis` | Redis Ruby client (>= 5.0) |
 
 ## Testing
+
+49 specs total (40 existing + 9 in `spec/legion/extensions/redis/client_spec.rb`).
 
 ```bash
 bundle install
