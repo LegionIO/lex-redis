@@ -61,8 +61,9 @@ client.get(key: 'foo')
 ## Requirements
 
 - Ruby >= 3.4
-- [LegionIO](https://github.com/LegionIO/LegionIO) framework
+- [LegionIO](https://github.com/LegionIO/LegionIO) framework (optional for standalone client usage)
 - Redis server >= 5.0
+- `redis` gem >= 5.0
 
 ## License
 

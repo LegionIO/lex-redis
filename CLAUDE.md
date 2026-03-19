@@ -8,7 +8,7 @@
 
 Legion Extension that connects LegionIO to Redis servers. Provides runners for item-level key/value operations and server management.
 
-**Version**: 0.2.0
+**Version**: 0.2.2
 **GitHub**: https://github.com/LegionIO/lex-redis
 **License**: MIT
 
@@ -46,6 +46,8 @@ Both runners use `extend Legion::Extensions::Redis::Helpers::Client` so `client(
 
 `Helpers::Client.client` defaults: `host: '127.0.0.1'`, `port: 6380`. Note the non-standard default port of 6380 (not the Redis default 6379). Pass `host:`, `port:`, `db:`, and `password:` in task payloads to override.
 
+`Helpers::Client` uses `::Redis.new` (fully qualified) to avoid the constant resolving to `Legion::Extensions::Redis` instead of the Redis gem class. `flush_db` calls `redis.flushdb` with no arguments (Redis >= 5.0). Return key for `flush_db` is `result:` (not `results:`).
+
 ## Standalone Client
 
 `Client` wraps `Helpers::Client` and includes all runners (`Item`, `Server`), enabling use as a standalone Redis client outside the full LegionIO framework.
@@ -58,7 +60,7 @@ Both runners use `extend Legion::Extensions::Redis::Helpers::Client` so `client(
 
 ## Testing
 
-49 specs total (40 existing + 9 in `spec/legion/extensions/redis/client_spec.rb`).
+49 specs across 5 spec files.
 
 ```bash
 bundle install
