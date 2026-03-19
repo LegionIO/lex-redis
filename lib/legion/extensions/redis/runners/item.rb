@@ -40,7 +40,7 @@ module Legion
           end
 
           extend Legion::Extensions::Redis::Helpers::Client
-          include Legion::Extensions::Helpers::Lex
+          include Legion::Extensions::Helpers::Lex if defined?(Legion::Extensions::Helpers::Lex)
         end
       end
     end

@@ -11,7 +11,7 @@ module Legion
             connect_hash = { host: host, port: port }
             connect_hash[:db] = opts[:db] if opts.key? :db
             connect_hash[:password] = opts[:password] if opts.key? :password
-            Redis.new(**connect_hash)
+            ::Redis.new(**connect_hash)
           end
         end
       end

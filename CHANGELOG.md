@@ -1,5 +1,16 @@
 # Changelog
 
+## [0.2.2] - 2026-03-18
+
+### Fixed
+- `::Redis.new` constant resolution in `Helpers::Client` (was resolving to `Legion::Extensions::Redis` module instead of the Redis gem class)
+- `flush_db` runner no longer passes a positional argument to `flushdb` (Redis >= 5.0 takes no args)
+- `flush_db` return key changed from `results:` to `result:` to match all other runner methods
+- Added `if defined?(Legion::Extensions::Helpers::Lex)` guard to `include` in both `Runners::Item` and `Runners::Server` for standalone loading
+
+### Changed
+- `Gemfile.lock` added to `.gitignore`
+
 ## [0.2.1] - 2026-03-18
 
 ### Changed

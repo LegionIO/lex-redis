@@ -73,21 +73,21 @@ RSpec.describe Legion::Extensions::Redis::Runners::Server do
 
   # ---------------------------------------------------------------------------
   describe '#flush_db' do
-    it 'returns results from flushing the default db 0' do
-      allow(redis_client).to receive(:flushdb).with(0).and_return('OK')
-      expect(runner.flush_db).to eq({ results: 'OK' })
+    it 'returns result from flushing the default db 0' do
+      allow(redis_client).to receive(:flushdb).and_return('OK')
+      expect(runner.flush_db).to eq({ result: 'OK' })
     end
 
     it 'accepts a custom db number' do
-      allow(redis_client).to receive(:flushdb).with(3).and_return('OK')
-      expect(runner.flush_db(db: 3)).to eq({ results: 'OK' })
+      allow(redis_client).to receive(:flushdb).and_return('OK')
+      expect(runner.flush_db(db: 3)).to eq({ result: 'OK' })
     end
 
-    it 'uses results key (not result)' do
-      allow(redis_client).to receive(:flushdb).with(0).and_return('OK')
+    it 'uses result key (not results)' do
+      allow(redis_client).to receive(:flushdb).and_return('OK')
       result = runner.flush_db
-      expect(result).to have_key(:results)
-      expect(result).not_to have_key(:result)
+      expect(result).to have_key(:result)
+      expect(result).not_to have_key(:results)
     end
   end
 end

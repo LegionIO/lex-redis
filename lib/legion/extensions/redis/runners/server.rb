@@ -28,11 +28,11 @@ module Legion
           end
 
           def flush_db(db: 0, **)
-            { results: client(db: db, **).flushdb(db) }
+            { result: client(db: db, **).flushdb }
           end
 
           extend Legion::Extensions::Redis::Helpers::Client
-          include Legion::Extensions::Helpers::Lex
+          include Legion::Extensions::Helpers::Lex if defined?(Legion::Extensions::Helpers::Lex)
         end
       end
     end
