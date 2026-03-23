@@ -3,7 +3,7 @@
 module Legion
   module Extensions
     module Redis
-      VERSION = '0.2.2'
+      VERSION = '0.2.3'
     end
   end
 end
