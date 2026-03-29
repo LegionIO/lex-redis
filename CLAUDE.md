@@ -8,7 +8,7 @@
 
 Legion Extension that connects LegionIO to Redis servers. Provides runners for item-level key/value operations and server management.
 
-**Version**: 0.2.2
+**Version**: 0.2.3
 **GitHub**: https://github.com/LegionIO/lex-redis
 **License**: MIT
 
